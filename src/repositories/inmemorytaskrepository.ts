@@ -10,7 +10,7 @@ export class InMemoryTaskRepository implements ITaskRepository {
   }
 
   async get(taskId: number): Promise<Task> {
-    const task: Task = this._tasks.find((t) => t.id === task.id);
+    const task: Task = this._tasks.find((t) => t.id === taskId);
     return task;
   }
 
@@ -24,8 +24,9 @@ export class InMemoryTaskRepository implements ITaskRepository {
 
   async update(taskId: number, task: Task): Promise<Task> {
     let updatedTask: any = this._tasks.filter((t) => t.id === taskId);
-    updatedTask.name = task.name;
-    updatedTask.isComplete = task.isComplete;
+    console.log("updatedTask: ", updatedTask);
+    updatedTask[0].name = task.name;
+    updatedTask[0].isComplete = task.isComplete;
 
     return updatedTask;
   }
